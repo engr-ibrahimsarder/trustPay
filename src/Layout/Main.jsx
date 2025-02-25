@@ -5,7 +5,9 @@ const Main = () => {
   const location = useLocation();
   const hideNavbarAndFooter =
     location.pathname.includes("/") || location.pathname.includes("/login");
-  const show = location.pathname.includes("/home");
+  const show =
+    location.pathname.includes("/home") ||
+    location.pathname.includes("/dashboard");
   return (
     <div>
       {hideNavbarAndFooter || <Navbar></Navbar>}

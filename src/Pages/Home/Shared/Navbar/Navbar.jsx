@@ -34,7 +34,7 @@ const Navbar = () => {
                     <MdDashboard className="text-xl text-gray-400"></MdDashboard>
 
                     <Link
-                      to="/home"
+                      to="/dashboard"
                       className="hover:text-orange-500 hover:underline"
                     >
                       Dashboard
