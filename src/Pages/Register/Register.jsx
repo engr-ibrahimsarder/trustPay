@@ -22,30 +22,35 @@ const Register = () => {
       pin: data.pin,
       nid: data.nid,
     };
+
     axiosPublic.post("/users", userInfo).then((res) => {
-      if (res.data) {
+      if (res.data.message) {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "User Already Exist!",
         });
-      }
-      if (res.data.insertedId) {
-        reset();
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "User Created Successfully!",
-          showConfirmButton: false,
-          timer: 1500,
+      } else if (res.data.insertedId) {
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res?.data?.token) {
+            reset();
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "User Created Successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            localStorage.setItem("access-token", res?.data?.token);
+            navigate("/home");
+          }
         });
-        navigate("/home");
       }
     });
   };
   return (
     <div>
-      <div className="container mx-auto my-5">
+      <div className="container mx-auto pt-24 pb-5">
         <div className="flex  h-[200] w-[400px] mx-auto bg-gray-200 rounded justify-center  py-5 px-3">
           <div>
             <h1 className="text-center text-xl mt-5 font-bold">Register</h1>
@@ -123,8 +128,8 @@ const Register = () => {
                   {...register("role", { required: true })}
                 >
                   <option value="">Account Type</option>
-                  <option value="user">Agent</option>
-                  <option value="agent">User</option>
+                  <option value="agent">Agent</option>
+                  <option value="user">User</option>
                 </select>
               </div>
               <div>
