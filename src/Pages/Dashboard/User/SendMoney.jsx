@@ -24,21 +24,28 @@ const SendMoney = () => {
       amount: amount,
       pin: data.pin,
     };
-    console.log(sendmoneyInfo);
     axiosSecure
       .patch(`/user-sendmoney/${data.phone}`, sendmoneyInfo)
       .then((res) => {
         if (res?.data?.message) {
           Swal.fire("User Not Found!");
         }
+        if (res?.data?.acknowledged) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: `${res?.data?.tranjectionId} SendMOney Successful!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         refetch();
-        console.log(res);
         reset;
       });
   };
   return (
     <div>
-      <h1>Send Money</h1>
+      <h1 className="text-2xl">Send Money</h1>
       <form className="w-96 mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <input
@@ -64,7 +71,7 @@ const SendMoney = () => {
         <input
           className="btn py-2 rounded cursor-pointer mt-5 bg-orange-400 hover:bg-orange-400 text-white w-full"
           type="submit"
-          value="Submit"
+          value="SendMoney"
         />
       </form>
     </div>

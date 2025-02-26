@@ -15,8 +15,8 @@ const AdminDashboard = () => {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/Cashout" className="text-blue-400">
-              Cash-Out
+            <Link to="/dashboard/approvalrequest" className="text-blue-400">
+              Approval Request
             </Link>
           </li>
         </ul>

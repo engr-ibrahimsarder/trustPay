@@ -6,6 +6,7 @@ import { Dropdown } from "flowbite-react";
 import { PiSignOutBold } from "react-icons/pi";
 import { MdDashboard } from "react-icons/md";
 import useUser from "../../../../hooks/useUser";
+import { IoIosNotifications } from "react-icons/io";
 const Navbar = () => {
   const [dbUser] = useUser();
   const [balance, setBalance] = useState(false);
@@ -18,11 +19,17 @@ const Navbar = () => {
   const navMenu = (
     <>
       <nav>
-        <ul className="flex justify-center items-center md:flex-row flex-col  uppercase text-black gap-5">
+        <ul className="flex justify-center items-center md:flex-row flex-col  uppercase text-black gap-5 ">
+          <li>
+            <IoIosNotifications className="text-4xl text-orange-400 " />
+            <p className="absolute top-8 -ml-5 bg-gray-50 px-3 py-2 rounded-full">
+              0
+            </p>
+          </li>
           <li>
             <Dropdown
               label={
-                <FaRegUserCircle className="text-gray-600 text-4xl"></FaRegUserCircle>
+                <FaRegUserCircle className="text-gray-600 text-4xl cursor-pointer"></FaRegUserCircle>
               }
               arrowIcon={false}
               inline
@@ -76,7 +83,7 @@ const Navbar = () => {
               Balance Check
             </button>
             {balance ? (
-              <h1 className="bg-gray-400 px-5 py-3 rounded ">
+              <h1 className="bg-gray-200 px-5 py-3 rounded ">
                 {dbUser.amount}
               </h1>
             ) : (

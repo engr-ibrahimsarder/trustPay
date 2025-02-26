@@ -15,7 +15,7 @@ const UserDashboard = () => {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/Cashout" className="text-blue-400">
+            <Link to="/dashboard/cashout" className="text-blue-400">
               Cash-Out
             </Link>
           </li>

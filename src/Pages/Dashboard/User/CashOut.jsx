@@ -3,7 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiousSecure";
 import useUser from "../../../hooks/useUser";
 import Swal from "sweetalert2";
 
-const UserCashIn = () => {
+const CashOut = () => {
   const axiosSecure = useAxiosSecure();
   const [dbUser, refetch] = useUser();
   const {
@@ -13,31 +13,37 @@ const UserCashIn = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const cashInfo = {
+    const amount = Number(data.amount);
+    const cashoutInfo = {
       email: dbUser.email,
       phone: data.phone,
-      amount: data.amount,
+      amount,
       pin: data.pin,
     };
-    console.log(cashInfo);
-    axiosSecure.patch(`/agent-user/${data.phone}`, cashInfo).then((res) => {
-      refetch();
-      console.log(res);
-      if (res.data.acknowledged) {
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: `${res?.data?.tranjectionId} CashIn Successful!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-      reset();
-    });
+    console.log(cashoutInfo);
+    axiosSecure
+      .patch(`/user-cashout/${data.phone}`, cashoutInfo)
+      .then((res) => {
+        if (res?.data?.message) {
+          Swal.fire("Agent Account Not Found!");
+        }
+        if (res?.data?.acknowledged) {
+          reset;
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: `CashOut Successful!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        console.log(res.data);
+        refetch();
+      });
   };
   return (
     <div>
-      <h1 className="text-2xl">User CashIn</h1>
+      <h1 className="text-2xl">User CashOut</h1>
       <div>
         <form className="w-96 mx-auto" onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -64,7 +70,7 @@ const UserCashIn = () => {
           <input
             className="btn py-2 rounded cursor-pointer mt-5 bg-orange-400 hover:bg-orange-400 text-white w-full"
             type="submit"
-            value="Submit"
+            value="CashOut"
           />
         </form>
       </div>
@@ -72,4 +78,4 @@ const UserCashIn = () => {
   );
 };
 
-export default UserCashIn;
+export default CashOut;

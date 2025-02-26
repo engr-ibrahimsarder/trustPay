@@ -1,21 +1,19 @@
-import { useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiousSecure";
 import { Table } from "flowbite-react";
+import useAxiosSecure from "../../../hooks/useAxiousSecure";
+import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-const UserManagement = () => {
+const ApprovalRequest = () => {
   const [user, setUser] = useState();
   const axiosSecure = useAxiosSecure();
   axiosSecure.get("/all-users").then((res) => {
-    setUser(res?.data);
+    const user = res?.data;
+    const agent = user.filter((agentUser) => agentUser.role == "agent");
+    setUser(agent);
   });
-  const handleVerify = (data) => {
-    axiosSecure.patch(`/user/${data.phone}`, data).then((res) => {
-      console.log(res);
-    });
-  };
+
   return (
     <div>
-      <h1>User Management</h1>
+      <h1>Approval Request</h1>
       <div className="overflow-x-auto">
         <Table>
           <Table.Head>
@@ -41,26 +39,9 @@ const UserManagement = () => {
                 <Table.Cell>{dbUser?.amount}</Table.Cell>
                 <Table.Cell>{dbUser?.role}</Table.Cell>
                 <Table.Cell>
-                  {dbUser?.role == "admin" ? (
-                    <h1 className="bg-green-400 text-center py-3 rounded my-3 text-white">
-                      Admin
-                    </h1>
-                  ) : dbUser.role == "user" ? (
-                    <h1 className="bg-black text-center my-3 text-white py-3">
-                      Accept
-                    </h1>
-                  ) : dbUser?.status == true ? (
-                    <h1 className="bg-purple-400 text-center my-3 text-white py-3">
-                      Accept
-                    </h1>
-                  ) : (
-                    <button
-                      onClick={() => handleVerify(dbUser)}
-                      className="bg-orange-400 px-6 py-3 rounded my-3 text-white cursor-pointer"
-                    >
-                      Verify
-                    </button>
-                  )}
+                  <h1 className="bg-purple-400 text-center my-3 text-white py-3">
+                    Accept
+                  </h1>
                 </Table.Cell>
                 <Table.Cell>
                   <button className="cursor-pointer">
@@ -76,4 +57,4 @@ const UserManagement = () => {
   );
 };
 
-export default UserManagement;
+export default ApprovalRequest;

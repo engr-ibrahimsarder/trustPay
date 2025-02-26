@@ -10,6 +10,8 @@ import UserCashIn from "../Pages/Dashboard/Agent/UserCashIn";
 import AgentTranjection from "../Pages/Dashboard/Agent/AgentTranjection";
 import AgentCashReq from "../Pages/Dashboard/Agent/AgentCashReq";
 import AgentWithdraw from "../Pages/Dashboard/Agent/AgentWithdraw";
+import ApprovalRequest from "../Pages/Dashboard/Admin/ApprovalRequest";
+import CashOut from "../Pages/Dashboard/User/CashOut";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
         path: "sendmoney",
         element: <SendMoney></SendMoney>,
       },
+      {
+        path: "cashout",
+        element: <CashOut></CashOut>,
+      },
       // agent route ----------------
 
       {
@@ -60,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "usermanagement",
         element: <UserManagement></UserManagement>,
+      },
+      {
+        path: "approvalrequest",
+        element: <ApprovalRequest></ApprovalRequest>,
       },
     ],
   },
