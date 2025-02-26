@@ -7,7 +7,7 @@ import AgentDashboard from "./AgentDashboard";
 
 const Dashboard = () => {
   const [dbUser] = useUser();
-  console.log(dbUser);
+
   return (
     <div className="bg-gray-200 h-screen">
       <Navbar></Navbar>

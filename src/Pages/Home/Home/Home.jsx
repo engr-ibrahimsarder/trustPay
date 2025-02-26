@@ -1,10 +1,6 @@
-import useUser from "../../../hooks/useUser";
 import { FaHandHoldingUsd } from "react-icons/fa";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 const Home = () => {
-  const [dbUser] = useUser();
-  console.log(dbUser);
-
   return (
     <div className="container mx-auto pt-24">
       <section className="flex gap-5 justify-center">

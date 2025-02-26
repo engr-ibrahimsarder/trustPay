@@ -7,8 +7,12 @@ import { PiSignOutBold } from "react-icons/pi";
 import { MdDashboard } from "react-icons/md";
 import useUser from "../../../../hooks/useUser";
 import { IoIosNotifications } from "react-icons/io";
+import useTrajection from "../../../../hooks/useTranjection";
+import useAllTrajection from "../../../../hooks/useAllTrajection";
 const Navbar = () => {
   const [dbUser] = useUser();
+  const [tranjection, refetch] = useTrajection();
+  const [alltranjection] = useAllTrajection();
   const [balance, setBalance] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -21,10 +25,12 @@ const Navbar = () => {
       <nav>
         <ul className="flex justify-center items-center md:flex-row flex-col  uppercase text-black gap-5 ">
           <li>
-            <IoIosNotifications className="text-4xl text-orange-400 " />
-            <p className="absolute top-8 -ml-5 bg-gray-50 px-3 py-2 rounded-full">
-              0
-            </p>
+            <Link to="/dashboard/tranjection">
+              <IoIosNotifications className="text-4xl text-gray-500 " />
+              <p className="absolute top-8 -ml-3 bg-rose-400 px-2 py-1 text-white rounded-full">
+                {tranjection.length || alltranjection.length}
+              </p>
+            </Link>
           </li>
           <li>
             <Dropdown
@@ -35,7 +41,7 @@ const Navbar = () => {
               inline
             >
               <Dropdown.Item>
-                <ul>
+                <ul className="">
                   <Dropdown.Divider />
                   <li className="flex gap-4 my-2 items-center">
                     <MdDashboard className="text-xl text-gray-400"></MdDashboard>

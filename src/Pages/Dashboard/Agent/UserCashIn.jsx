@@ -21,9 +21,8 @@ const UserCashIn = () => {
     };
     console.log(cashInfo);
     axiosSecure.patch(`/agent-user/${data.phone}`, cashInfo).then((res) => {
-      refetch();
-      console.log(res);
       if (res.data.acknowledged) {
+        refetch();
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -32,7 +31,7 @@ const UserCashIn = () => {
           timer: 1500,
         });
       }
-      reset();
+      reset;
     });
   };
   return (

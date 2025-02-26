@@ -12,6 +12,9 @@ import AgentCashReq from "../Pages/Dashboard/Agent/AgentCashReq";
 import AgentWithdraw from "../Pages/Dashboard/Agent/AgentWithdraw";
 import ApprovalRequest from "../Pages/Dashboard/Admin/ApprovalRequest";
 import CashOut from "../Pages/Dashboard/User/CashOut";
+import AllTranjection from "../Pages/Dashboard/Admin/AllTranjection";
+import Withdraw from "../Pages/Dashboard/Admin/Withdraw";
+import UserQuery from "../Pages/Dashboard/Admin/UserQuery";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +73,18 @@ const router = createBrowserRouter([
       {
         path: "approvalrequest",
         element: <ApprovalRequest></ApprovalRequest>,
+      },
+      {
+        path: "alltranjection",
+        element: <AllTranjection></AllTranjection>,
+      },
+      {
+        path: "userquery",
+        element: <UserQuery></UserQuery>,
+      },
+      {
+        path: "withdraw",
+        element: <Withdraw></Withdraw>,
       },
     ],
   },

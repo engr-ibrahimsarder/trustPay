@@ -15,8 +15,8 @@ const UserManagement = () => {
   };
   return (
     <div>
-      <h1>User Management</h1>
-      <div className="overflow-x-auto">
+      <h1 className="text-2xl">User Management</h1>
+      <div className="overflow-x-auto mt-3">
         <Table>
           <Table.Head>
             <Table.HeadCell>#SL</Table.HeadCell>

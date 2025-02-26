@@ -19,6 +19,21 @@ const AdminDashboard = () => {
               Approval Request
             </Link>
           </li>
+          <li>
+            <Link to="/dashboard/alltranjection" className="text-blue-400">
+              All Tranjection
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/userquery" className="text-blue-400">
+              User Query
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/withdraw" className="text-blue-400">
+              Withdraw Approve
+            </Link>
+          </li>
         </ul>
       </section>
     </div>

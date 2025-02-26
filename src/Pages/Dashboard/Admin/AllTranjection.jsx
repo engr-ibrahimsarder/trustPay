@@ -1,11 +1,12 @@
 import { Table } from "flowbite-react";
-import useTrajection from "../../../hooks/useTranjection";
-const AgentTranjection = () => {
-  const [tranjection] = useTrajection();
+import useAllTrajection from "../../../hooks/useAllTrajection";
+
+const AllTranjection = () => {
+  const [alltranjection] = useAllTrajection();
   return (
     <div>
-      <h1 className="text-2xl">Agent Tranjection</h1>
-      <div className="overflow-x-auto">
+      <h1 className="text-2xl">All Tranjection</h1>
+      <div className="overflow-x-auto mt-3">
         <Table>
           <Table.Head>
             <Table.HeadCell>#SL</Table.HeadCell>
@@ -15,7 +16,7 @@ const AgentTranjection = () => {
             <Table.HeadCell>Tranjection</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y ">
-            {tranjection?.map((tran, index) => (
+            {alltranjection?.map((tran, index) => (
               <Table.Row
                 key={tran._id}
                 className="bg-white dark:border-gray-700 dark:bg-gray-800 py-6"
@@ -37,4 +38,4 @@ const AgentTranjection = () => {
   );
 };
 
-export default AgentTranjection;
+export default AllTranjection;
