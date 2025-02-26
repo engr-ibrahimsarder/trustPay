@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div>
       <div className="pt-24 container mx-auto ">
-        <div className="flex  h-[200] w-[400px] mx-auto bg-gray-200 rounded justify-center  py-5 ">
+        <div className="flex   w-[400px] mx-auto bg-gray-200 rounded justify-center  py-5 ">
           <div className="w-full mx-3">
             <h1 className="text-center text-xl mt-5 font-bold">Login</h1>
             <form onSubmit={handleSubmit(onSubmit)}>

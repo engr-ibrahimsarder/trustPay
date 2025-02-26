@@ -1,8 +1,9 @@
 import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiousSecure";
 import { Table } from "flowbite-react";
-import { FaTrashAlt } from "react-icons/fa";
+import { MdBlock } from "react-icons/md";
 const UserManagement = () => {
+  const [status, setStatus] = useState(false);
   const [user, setUser] = useState();
   const axiosSecure = useAxiosSecure();
   axiosSecure.get("/all-users").then((res) => {
@@ -10,6 +11,17 @@ const UserManagement = () => {
   });
   const handleVerify = (data) => {
     axiosSecure.patch(`/user/${data.phone}`, data).then((res) => {
+      console.log(res);
+    });
+  };
+  // console.log(status);
+  const handleStatus = (data) => {
+    const userInfo = {
+      data,
+      status,
+    };
+    console.log(userInfo);
+    axiosSecure.patch(`/user-status/${data.phone}`, userInfo).then((res) => {
       console.log(res);
     });
   };
@@ -21,11 +33,11 @@ const UserManagement = () => {
           <Table.Head>
             <Table.HeadCell>#SL</Table.HeadCell>
             <Table.HeadCell>Name</Table.HeadCell>
-
             <Table.HeadCell>Amount</Table.HeadCell>
             <Table.HeadCell>Role</Table.HeadCell>
+            <Table.HeadCell>Status</Table.HeadCell>
             <Table.HeadCell>Approve</Table.HeadCell>
-            <Table.HeadCell>Remove</Table.HeadCell>
+            <Table.HeadCell>Block</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y ">
             {user?.map((dbUser, index) => (
@@ -40,6 +52,8 @@ const UserManagement = () => {
 
                 <Table.Cell>{dbUser?.amount}</Table.Cell>
                 <Table.Cell>{dbUser?.role}</Table.Cell>
+                <Table.Cell>{dbUser?.amount}</Table.Cell>
+                <Table.Cell>{dbUser?.status}</Table.Cell>
                 <Table.Cell>
                   {dbUser?.role == "admin" ? (
                     <h1 className="bg-green-400 text-center py-3 rounded my-3 text-white">
@@ -49,7 +63,7 @@ const UserManagement = () => {
                     <h1 className="bg-black text-center my-3 text-white py-3">
                       Accept
                     </h1>
-                  ) : dbUser?.status == true ? (
+                  ) : dbUser?.verify == true ? (
                     <h1 className="bg-purple-400 text-center my-3 text-white py-3">
                       Accept
                     </h1>
@@ -63,8 +77,14 @@ const UserManagement = () => {
                   )}
                 </Table.Cell>
                 <Table.Cell>
-                  <button className="cursor-pointer">
-                    <FaTrashAlt className="text-orange-400 text-xl ml-10"></FaTrashAlt>
+                  <button
+                    onClick={() => handleStatus(dbUser)}
+                    className="cursor-pointer"
+                  >
+                    <MdBlock
+                      onClick={() => setStatus(!status)}
+                      className="text-orange-400 text-xl ml-10"
+                    ></MdBlock>
                   </button>
                 </Table.Cell>
               </Table.Row>

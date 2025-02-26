@@ -7,7 +7,7 @@ const ApprovalRequest = () => {
   const axiosSecure = useAxiosSecure();
   axiosSecure.get("/all-users").then((res) => {
     const user = res?.data;
-    const agent = user.filter((agentUser) => agentUser.role == "agent");
+    const agent = user.filter((agentUser) => agentUser.verify == true);
     setUser(agent);
   });
 

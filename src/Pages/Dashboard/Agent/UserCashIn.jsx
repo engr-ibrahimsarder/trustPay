@@ -26,7 +26,7 @@ const UserCashIn = () => {
         Swal.fire({
           position: "top-center",
           icon: "success",
-          title: `${res?.data?.tranjectionId} CashIn Successful!`,
+          title: ` CashIn Successful!`,
           showConfirmButton: false,
           timer: 1500,
         });

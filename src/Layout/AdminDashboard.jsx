@@ -7,7 +7,9 @@ const AdminDashboard = () => {
   return (
     <div>
       <section className="w-72">
-        <h1 className="text-center">hello, {dbUser?.name}</h1>
+        <h1 className="text-center">
+          hello, {dbUser?.name} - {dbUser.role}
+        </h1>
         <ul className="text-center py-5">
           <li>
             <Link to="/dashboard/usermanagement" className="text-blue-400">

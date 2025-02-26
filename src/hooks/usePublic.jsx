@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  // https://sellora-server.vercel.app/
-  // http://localhost:5000/
-  baseURL: "http://localhost:3000/",
+  // https://trust-pay-server.vercel.app/
+  // http://localhost:3000/
+  baseURL: "https://trust-pay-server.vercel.app/",
 });
 const usePublic = () => {
   return axiosPublic;

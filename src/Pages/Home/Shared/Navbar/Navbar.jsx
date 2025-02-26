@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/dashboard/tranjection">
               <IoIosNotifications className="text-4xl text-gray-500 " />
               <p className="absolute top-8 -ml-3 bg-rose-400 px-2 py-1 text-white rounded-full">
-                {tranjection.length || alltranjection.length}
+                {tranjection.length}
               </p>
             </Link>
           </li>

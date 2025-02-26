@@ -50,8 +50,8 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="container mx-auto pt-24 pb-5">
-        <div className="flex  h-[200] w-[400px] mx-auto bg-gray-200 rounded justify-center  py-5 px-3">
+      <div className="container mx-auto pt-10 pb-5">
+        <div className="flex  w-[400px] mx-auto bg-gray-200 rounded justify-center  py-5 px-3">
           <div>
             <h1 className="text-center text-xl mt-5 font-bold">Register</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
